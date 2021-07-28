@@ -14,10 +14,11 @@ def read_form():
 @app.get("/form")
 def form_post(request: Request):
     result = "Type a number"
-    return templates.TemplateResponse('form.html', context={'request': request, 'result': result})
+    name = "Type a name"
+    return templates.TemplateResponse('form.html', context={'request': request, 'result': result, 'name': name})
 
 
 @app.post("/form")
-def form_post(request: Request, num: int = Form(...)):
+def form_post(request: Request, num: int = Form(...), name: str = Form(...)):
     result = spell_number(num)
-    return templates.TemplateResponse('form.html', context={'request': request, 'result': result})
+    return templates.TemplateResponse('form.html', context={'request': request, 'result': result, 'name': name})
